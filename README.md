@@ -120,9 +120,9 @@
         and I wish your life always shines with the same light. ✨
       </p>
       <p>
-        Today is for you celebrate, smile, and enjoy every bit of Onam. ❤️
+        Today is for you—celebrate, smile, and enjoy every bit of Onam. ❤️
       </p>
-      <footer> Akshat</footer>
+      <footer>— Akshat</footer>
     </div>
   </div>
 
