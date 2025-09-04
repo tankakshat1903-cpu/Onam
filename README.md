@@ -2,102 +2,70 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Onam, Ente Chellam</title>
+  <title>Happy Onam 💌</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      background: linear-gradient(to bottom, #fff8e7, #ffe4b5);
-      font-family: 'Segoe UI', sans-serif;
+      height: 100vh;
+      background: linear-gradient(#fff8e1, #ffecb3);
+      overflow: hidden;
+      font-family: 'Georgia', serif;
+      text-align: center;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      overflow: hidden;
-      text-align: center;
     }
 
-    /* Envelope */
-    .envelope {
-      width: 90vw;
-      max-width: 350px;
-      height: 220px;
-      background: #d2691e;
+    /* Center container */
+    .container {
       position: relative;
-      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    /* Tap to open text */
+    .tap-text {
+      font-size: 22px;
+      font-weight: bold;
+      color: #8b4513;
       cursor: pointer;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      animation: blink 1.2s infinite;
+    }
+    @keyframes blink {
+      50% { opacity: 0.4; }
     }
 
-    .flap {
-      width: 0;
-      height: 0;
-      border-left: 50% solid transparent;
-      border-right: 50% solid transparent;
-      border-bottom: 110px solid #a0522d;
-      position: absolute;
-      top: 0;
-      left: 0;
-      transition: transform 1s;
-      transform-origin: top;
-    }
-
-    .envelope.open .flap {
-      transform: rotateX(180deg);
-    }
-
-    /* Letter */
-    .letter {
-      width: 85%;
-      min-height: 250px;
-      background: #fffef9;
-      position: absolute;
-      top: 15px;
-      left: 50%;
-      transform: translateX(-50%) translateY(100%);
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-      transition: transform 1.5s ease;
-      padding: 20px;
-      box-sizing: border-box;
-      overflow-y: auto;
-    }
-
-    /* Letter slides up just enough to be visible */
-    .envelope.open .letter {
-      transform: translateX(-50%) translateY(-40%);
-    }
-
-    h1 {
-      color: #d2691e;
-      font-size: 1.5em;
-      margin-bottom: 15px;
-      text-shadow: 0 0 8px #ffcc00;
-    }
-
-    p {
-      font-size: 1.1em;
+    /* Message card */
+    .message-card {
+      max-width: 350px;
+      padding: 25px;
+      background: #fffdf5;
+      border: 2px solid gold;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+      font-size: 16px;
       line-height: 1.6;
-      margin: 10px 0;
+      color: #333;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1.5s ease;
+      display: none;
+    }
+    .show-message {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    footer {
-      margin-top: 15px;
-      font-style: italic;
-      font-size: 1em;
-      color: #444;
-    }
-
-    /* Floating flowers */
+    /* Falling flowers */
     .flower {
       position: absolute;
       top: -50px;
-      font-size: 2em;
+      font-size: 22px;
       animation: fall linear infinite;
-      opacity: 0.9;
     }
-
     @keyframes fall {
       0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
       100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
@@ -106,38 +74,48 @@
 </head>
 <body>
 
-  <!-- Envelope -->
-  <div class="envelope" onclick="this.classList.toggle('open')">
-    <div class="flap"></div>
-    <div class="letter">
-      <h1>🌸 Happy Onam, Ente Chellam 🌸</h1>
-      <p>
-        I know in this special festival I am not with you,<br>
-        but my blessings and love are always with you. 🌸
-      </p>
-      <p>
-        This festival brings colors of joy and new moments of happiness,<br>
-        and I wish your life always shines with the same light. ✨
-      </p>
-      <p>
-        Today is for you—celebrate, smile, and enjoy every bit of Onam. ❤️
-      </p>
-      <footer>— Akshat</footer>
+  <div class="container">
+    <div id="tapText" class="tap-text">👉 Tap here 💌</div>
+
+    <div id="message" class="message-card">
+      <p>I know in this special festival I am not with you,<br>
+      but my blessings and love are always with you. 🌸</p>
+      <p>This festival brings colors of joy and new moments of happiness,<br>
+      and I wish your life always shines with the same light. ✨</p>
+      <p>Today is for you celebrate, smile, and enjoy every bit of Onam. ❤️</p>
+      <p><b>Akshat</b></p>
     </div>
   </div>
 
-  <!-- Floating flowers -->
+  <!-- Music -->
+  <audio id="music" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_69e4b5c6e4.mp3?filename=kerala-traditional-instrumental-10446.mp3" type="audio/mpeg">
+  </audio>
+
   <script>
-    const flowers = ["🌸","🌼","🌺","💮"];
-    for (let i = 0; i < 25; i++) {
-      let flower = document.createElement("div");
-      flower.className = "flower";
-      flower.innerText = flowers[Math.floor(Math.random()*flowers.length)];
+    const tapText = document.getElementById("tapText");
+    const message = document.getElementById("message");
+    const music = document.getElementById("music");
+
+    tapText.addEventListener("click", () => {
+      tapText.style.display = "none";     // hide tap text
+      message.style.display = "block";    // show card
+      setTimeout(() => message.classList.add("show-message"), 50);
+      music.play();
+    });
+
+    // Falling flowers
+    function createFlower() {
+      const flower = document.createElement("div");
+      flower.classList.add("flower");
+      flower.innerText = "🌸";
       flower.style.left = Math.random() * 100 + "vw";
-      flower.style.animationDuration = (5 + Math.random() * 5) + "s";
-      flower.style.fontSize = (1 + Math.random() * 2) + "em";
+      flower.style.animationDuration = (3 + Math.random() * 5) + "s";
       document.body.appendChild(flower);
+      setTimeout(() => flower.remove(), 8000);
     }
+    setInterval(createFlower, 800);
   </script>
+
 </body>
 </html>
