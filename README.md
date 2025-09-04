@@ -78,6 +78,7 @@
     <div id="tapText" class="tap-text">👉 Tap here 💌</div>
 
     <div id="message" class="message-card">
+      <p><b>Happy Onam, my dear Mole ❤️</b></p>
       <p>I know in this special festival I am not with you,<br>
       but my blessings and love are always with you. 🌸</p>
       <p>This festival brings colors of joy and new moments of happiness,<br>
