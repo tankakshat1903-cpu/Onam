@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Onam, Gaythri 🌸</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #fff8e7, #fceabb);
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+    }
+    
+    .message {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #4b2e05;
+      opacity: 0;
+      animation: fadeIn 3s forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .petal {
+      position: absolute;
+      top: -50px;
+      width: 30px;
+      height: 30px;
+      background-image: url('https://i.ibb.co/1zQvMHB/flower.png');
+      background-size: cover;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-50px) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(360deg); }
+    }
+
+    .boat {
+      position: absolute;
+      bottom: 30px;
+      left: -300px;
+      width: 250px;
+      animation: sail 20s linear infinite;
+    }
+
+    @keyframes sail {
+      0% { left: -300px; }
+      100% { left: 110%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Messages -->
+  <div class="message" style="animation-delay: 0s">🌸 Happy Onam, Ente Priye 🌸</div>
+  <div class="message" style="animation-delay: 4s">Onam ke rangon jaise, teri zindagi hamesha khilti rahe,<br>Payasam ki mithaas jaise, tera dil hamesha meetha rahe.</div>
+  <div class="message" style="animation-delay: 9s">Phoolon ke pookalam mein jaise khushbu basa karti hai,<br>Waise hi tu meri har dua mein hamesha basa karti hai.</div>
+  <div class="message" style="animation-delay: 14s">Chahe jitni bhi doori ho iss Onam pe,<br>Mera pyaar hamesha tere paas hoga.</div>
+  <div class="message" style="animation-delay: 19s">With all my love,<br>Yours forever, Akshat ❤️</div>
+
+  <!-- Boat -->
+  <img src="https://i.ibb.co/VWJw2cT/boat.png" alt="Boat" class="boat">
+
+  <script>
+    // Create falling petals
+    function createPetal() {
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      petal.style.left = Math.random() * 100 + 'vw';
+      petal.style.animationDuration = (5 + Math.random() * 5) + 's';
+      document.body.appendChild(petal);
+      setTimeout(() => petal.remove(), 10000);
+    }
+
+    setInterval(createPetal, 300);
+  </script>
+</body>
+</html>
